@@ -1,0 +1,53 @@
+<div>
+    <h4>Pipe</h4>
+    <div>Number = {{ number | exponential }}</div>
+    Cambiar el valor de 'Number' <input type="text" [(ngModel)]="number">
+</div>
+<div>
+    <h4>String interpolation</h4>
+    <div>
+        {{ 'Aquí puedo escribir código de javascript (o typescript).' }}
+    </div>
+    <div>
+        Ejemplo 1 => 5 + 5 = {{ 5 + 5 }}
+    </div>
+    <div>
+        Ejemplo 2 => Llamando una variable => title = {{ title }}
+    </div>
+</div>
+
+<div>
+    <h4>Data binding</h4>
+    <div>Puedo cambiar el valor de 'title' dinámicamente.</div>
+    Escribe 'Daniel' <input type="text" [(ngModel)]="title">
+</div>
+
+<div>
+    <h4>ngIf</h4>
+    <div *ngIf="title === 'Daniel'">El título es Daniel.</div>
+    <div *ngIf="title !== 'Daniel'">El título no es Daniel.</div>
+</div>
+
+<div>
+    <h4>ngSwitch</h4>
+    <div [ngSwitch]="title">
+        <div *ngSwitchCase="'Daniel'">El título es Daniel.</div>
+        <div *ngSwitchCase="'angular'">El título es angular.</div>
+        <div *ngSwitchDefault>El título no es Daniel ni angular.</div>
+    </div>
+</div>
+
+<div>
+    <button (click)="addItem()">Add item</button>
+</div>
+
+<div>
+    <h4>ngFor</h4>
+    <ul>
+        <li *ngIf="items.length === 0">la lista esta vacía</li>
+        <li *ngFor="let item of items; index as i">
+            {{ item }} {{ i }}
+            <button (click)="deleteItem(i)">delete</button>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,14 @@
+body {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(300px, 1fr)
+    );
+    // gap: 50px 20px;
+    justify-items: center;
+}

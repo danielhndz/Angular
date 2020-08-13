@@ -20,16 +20,28 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'platzi-store'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('platzi-store');
-  });
-
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('platzi-store app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('angular app is running!');
   });
 });
+
+/**
+ * Supongamos que en app.component.ts declaro la propiedad 'title' y le asigno un valor.
+ *
+ * ...
+ * export class AppComponent {
+ *  title = 'angular';
+ * }
+ * ...
+ *
+ * Podría testear este valor de la siguiente manera:
+ *
+ * it(`should have as title 'angular'`, () => {
+ *  const fixture = TestBed.createComponent(AppComponent);
+ *  const app = fixture.componentInstance;
+ *  expect(app.title).toEqual('angular');
+ * });
+ */

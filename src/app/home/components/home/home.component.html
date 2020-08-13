@@ -1,0 +1,185 @@
+<h1>{{ 'hola'.split('').reverse().join('') }}</h1>
+
+<div *ngIf="true">
+    <h1 class="title-test">FORMS TEST</h1>
+</div>
+
+<!-- <div>
+    <mat-form-field appearance="outline">
+        <mat-label>Outline form field</mat-label>
+        <input matInput placeholder="Placeholder" type="text" [formControl]="emalField">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+    <button mat-raised-button (click)="send($event)" [disabled]="emalField.invalid">Send</button>
+    {{ emalField.valid }}
+</div> -->
+
+<form [formGroup]="createProductFrom" (ngSubmit)="createProduct($event)">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>Formulario</mat-card-title>
+            <mat-card-subtitle>Crear producto</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <div class="col-xs">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Id</mat-label>
+                        <input placeholder="Id" formControlName="id" matInput type="text">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs">
+                    <mat-form-field>
+                        <mat-label>Title</mat-label>
+                        <input placeholder="Ttile" formControlName="title" matInput type="text">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs">
+                    <mat-form-field>
+                        <mat-label>Price</mat-label>
+                        <input placeholder="Price" formControlName="price" matInput type="number">
+                    </mat-form-field>
+                    <p *ngIf="priceField.hasError('priceInvalid')">El precio no puede ser mayor a 1</p>
+                    <p *ngIf="priceField.hasError('required') && priceField.dirty">El campo está vacío</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs">
+                    <img *ngIf="(image$ | async) as image" [src]="image" alt="Not found">
+                    <img *ngIf="true" [src]="(image$ | async)" alt="Not found">
+                    <input type="file" (change)="uploadFile($event)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs">
+                    <mat-form-field>
+                        <mat-label>Description</mat-label>
+                        <textarea placeholder="Type your product description here!" formControlName="description"
+                            matInput></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button type="submit">Enviar producto al mercado</button>
+        </mat-card-actions>
+    </mat-card>
+</form>
+
+<!--
+    Para enlanzar con un Observable debo usar un pipe para la asincronía.
+    Este pipe maneja la suscripción de manera automática.
+-->
+
+<div *ngIf="show">
+    <form [formGroup]="signupForm" (ngSubmit)="signUp($event)">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Sign Up</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-xm">
+                        <!-- <mat-form-field appearance="outline">
+                            <mat-label>Username</mat-label>
+                            <input placeholder="Type a username" formControlName="username" matInput type="text">
+                        </mat-form-field> -->
+                        <!--
+                            appearance="outline"
+                        -->
+                        <mat-form-field>
+                            <mat-label>Enter your email</mat-label>
+                            <input matInput placeholder="Enter your email" type="email" formControlName="email">
+                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xm">
+                        <!-- <mat-form-field>
+                            <mat-label>Password</mat-label>
+                            <input placeholder="Type a password" formControlName="password" matInput type="password">
+                        </mat-form-field> -->
+                        <!-- 
+                            Apariencia del segundo input de password
+                            appearance="fill"
+                            
+                            Enlace con el .ts
+                            formControlName
+    
+                            signinForm.get('password').getError('minLength') => no boolean
+    
+                            Condicional a los errores del formulario
+                            *ngIf="signinForm.get('password').hasError('required') && signinForm.get('password').dirty"
+                            signinForm.get('password').hasError('minLength')
+                            signinForm.get('password').valid => all errors
+    
+                            con material
+                            <mat-error *ngIf="signinForm.get('password').hasError('required') && signinForm.get('password').dirty">
+                                Error 1
+                            </mat-error>
+                            <mat-error *ngIf="signinForm.get('password').hasError('minLength')">
+                                Error 2
+                            </mat-error>
+                        -->
+                        <mat-form-field>
+                            <mat-label>Enter your password</mat-label>
+                            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button type="submit">Sign Up</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>
+
+<div *ngIf="show">
+    <form [formGroup]="signinForm" (ngSubmit)="signIn($event)">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Sign In</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-xm">
+                        <mat-form-field>
+                            <mat-label>Enter your email</mat-label>
+                            <input matInput placeholder="Enter your email" type="email" formControlName="email">
+                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xm">
+                        <mat-form-field>
+                            <mat-label>Enter your password</mat-label>
+                            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-card-content>
+
+            <mat-card-actions>
+                <button mat-raised-button type="submit">Sign in</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>

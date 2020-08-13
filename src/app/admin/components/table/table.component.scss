@@ -1,0 +1,29 @@
+// table {
+//   width: 100%;
+// }
+
+.container {
+  width: 96%;
+  margin: 2%;
+}
+
+// .btn {
+//   margin: 1%;
+// }
+
+// .img {
+//   max-width: 100%;
+// }
+
+.box {
+  display: block;
+  // height: 100px;
+  // width: 100%;
+  img {
+    object-fit: contain;
+    max-height: 150px;
+    max-width: 150px;
+    // width: 100%;
+    object-position: center;
+  }
+}

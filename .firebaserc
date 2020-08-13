@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "learning-3e770": {
+      "hosting": {
+        "angular": [
+          "learning-3e770"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "learning-3e770"
+  }
+}

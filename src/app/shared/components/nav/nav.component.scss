@@ -1,0 +1,38 @@
+// nav > a {
+//     padding: 5px;
+//     text-decoration: none;
+// }
+
+// nav > a.active {
+//     color: white;
+//     background-color: green;
+// }
+
+/*
+ * Sticky footer
+ */
+
+//  .sidenav-container {
+//     display: flex;
+//     min-height: 100vh;
+//     flex-direction: column;
+// }
+
+
+.site {
+    display: flex;
+    // min-height: 50vh;
+    // min-height: 80vh;
+    flex-direction: column;
+}
+
+.site-content {
+    // flex: 80vh;
+    flex: 1;
+    min-height: 70vh;
+}
+/* -------------------- */
+
+.header-row {
+    width: 100%;
+}
